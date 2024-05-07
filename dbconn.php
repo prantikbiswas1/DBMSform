@@ -1,7 +1,12 @@
 <?php
-    $host = 'localhost:4306';
+    // $host = 'localhost:4306';
+    // $username = 'root';
+    // $dbpassword = '12345';
+    // $database = 'formdata';
+
+    $host = 'localhost:8080';
     $username = 'root';
-    $dbpassword = '12345';
+    $dbpassword = 'example';
     $database = 'formdata';
     
 

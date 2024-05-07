@@ -24,6 +24,9 @@
     $category = $userInfo[0]['caste'];
     $_SESSION['formCategory'] = $category;
 
+    $_SESSION['fname'] = $userInfo[0]['firstname'];
+    $_SESSION['lname'] = $userInfo[0]['lastname'];
+
     $userInFirst = $conn->prepare("
     select * from `page1` where `email`='$email'
     ");
@@ -126,6 +129,7 @@
         $insertGeneral->execute();
         if($insertGeneral){
           echo "Inserted successfully";
+          header("Location: /DBMSform/secondpage.php");
         }
         else{
           echo "Not done";
@@ -341,7 +345,7 @@ color - btn-success, btn-primary, btn-default, btn-danger, btn-info, btn-warning
 
           <div class="row">
             <div class="col-md-8">
-                              <h4>Welcome : <font color="#025198"><strong>Ma&nbsp;Agarwal</strong></font></h4>
+                              <h4>Welcome : <font color="#025198"><strong><?php echo $_SESSION['fname']?> <?php echo $_SESSION['lname']?></strong></font></h4>
             </div>
              
             <div class="col-md-3">
@@ -552,7 +556,7 @@ color - btn-success, btn-primary, btn-default, btn-danger, btn-info, btn-warning
                          <a href="<?php if($_SESSION['new']==1){echo "";}else{echo $_SESSION['form_folder_photo'];}?>" class="btn btn-sm btn-success" target="_blank">View Uploaded File </a>
                     </div>
                      <div class="col-md-2"> 
-                       <input id="id_card_file" name="userfile2" type="file" class="form-control input-md" required="">
+                       <input id="id_card_file" name="userfile2" type="file" class="form-control input-md">
                     </div>
                      
                     
@@ -565,7 +569,7 @@ color - btn-success, btn-primary, btn-default, btn-danger, btn-info, btn-warning
 
         <div class="col-md-2 pull-right">
                       <img src="<?php if($_SESSION['new']==1){echo "";}else{echo $_SESSION['form_folder_id_photo'];}?>" class="thumbnail pull-right" height="150" width="130" />
-            <input id="photo" name="userfile" type="file" class="form-control input-md" required="">
+            <input id="photo" name="userfile" type="file" class="form-control input-md">
           
          
         </div>
