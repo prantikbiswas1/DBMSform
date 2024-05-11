@@ -1,8 +1,9 @@
 <?php
+    ob_start();
     include('./dbconn.php');
     session_start();
     if($_SESSION['login']==0){
-        header("Location: /DBMSform/login.php");
+        header("Location: /login.php");
       }
     else{
     echo "<script type='text/javascript'>
@@ -10,6 +11,13 @@
         </script>";
     }
 
+    $create_table_page2 = $conn->prepare("
+CREATE TABLE IF NOT EXISTS `page6` (
+    `email` VARCHAR(100) PRIMARY KEY,
+    `jsondata` TEXT NOT NULL
+);
+");
+$create_table_page2->execute();
     
     if (isset($_POST["submit"])) { 
 
@@ -35,9 +43,11 @@
         
         if ($insertjson) {
             echo "Inserted successfully";
-            header("Location: /DBMSform/seventhpage.php");
+            header("Location: /seventhpage.php");
         }  
     }
+
+    ob_end_flush();
         
 
 ?>

@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     session_start();
     if(isset($_POST['email'])){
         include('./dbconn.php');
@@ -23,13 +24,14 @@
             $_SESSION['reset']=1;
             $_SESSION['email']=$email;
             include('./sendmail.php');
-            header("Location: /DBMSform/enterotp.php");
+            header("Location: /enterotp.php");
               
         }
         else{
             "No user found";
         }
     }
+    ob_end_flush();
 ?>
 
 <html>

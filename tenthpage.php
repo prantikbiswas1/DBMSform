@@ -1,9 +1,10 @@
 <?php 
+	ob_start();
     include('./dbconn.php');
     session_start();
     $email = $_SESSION['email'];
     if($_SESSION['login']==0){
-        header("Location: /DBMSform/login.php");
+        header("Location: /login.php");
       }
     else{
     echo "<script type='text/javascript'>
@@ -47,6 +48,8 @@
             $_SESSION['identity'] = $data1[0]['id_proof'];
             
         }
+
+	ob_end_flush();
 
 ?>
 

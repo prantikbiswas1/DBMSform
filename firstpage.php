@@ -1,10 +1,11 @@
 <?php
 
+    ob_start();
     include('./dbconn.php');
     session_start();
 
     if($_SESSION['login']==0){
-      header("Location: /DBMSform/login.php");
+      header("Location: /login.php");
     }
     else{
       echo "<script type='text/javascript'>
@@ -14,6 +15,44 @@
 
     $email = $_SESSION['email'];
     echo $email;
+
+    $create_table_page1 = $conn->prepare("
+    CREATE TABLE IF NOT EXISTS `page1` (
+    `email` VARCHAR(100) PRIMARY KEY,
+    `adv_num` VARCHAR(100),
+    `doa` DATE,
+    `ref_num` VARCHAR(100),
+    `post` VARCHAR(100),
+    `dept` VARCHAR(100),
+    `fname` VARCHAR(100) NOT NULL,
+    `mname` VARCHAR(100),
+    `lname` VARCHAR(100) NOT NULL,
+    `nationality` VARCHAR(100),
+    `dob` DATE,
+    `gender` VARCHAR(100),
+    `mstatus` VARCHAR(100),
+    `category` VARCHAR(100),
+    `id_proof` VARCHAR(100),
+    `id_photo` VARCHAR(255),
+    `father_name` VARCHAR(100),
+    `photo` VARCHAR(255),
+    `CStreet` VARCHAR(255),
+    `CCity` VARCHAR(100),
+    `CState` VARCHAR(100),
+    `CCountry` VARCHAR(100),
+    `CPin` VARCHAR(20),
+    `PStreet` VARCHAR(255),
+    `PCity` VARCHAR(100),
+    `PState` VARCHAR(100),
+    `PCountry` VARCHAR(100),
+    `PPin` VARCHAR(20),
+    `mobile` VARCHAR(20),
+    `mobile_2` VARCHAR(20),
+    `email_2` VARCHAR(100),
+    `landline` VARCHAR(20)
+  );
+  ");
+$create_table_page1->execute();
 
     $findUser=$conn->prepare("
     select * from `users` where `email`='$email'
@@ -129,7 +168,7 @@
         $insertGeneral->execute();
         if($insertGeneral){
           echo "Inserted successfully";
-          header("Location: /DBMSform/secondpage.php");
+          header("Location: ./secondpage.php");
         }
         else{
           echo "Not done";
@@ -139,8 +178,8 @@
 
         
     }
-    
 
+    ob_end_flush();
 
 
 ?>

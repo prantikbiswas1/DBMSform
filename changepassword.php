@@ -1,4 +1,6 @@
 <?php
+
+    ob_start();
     session_start();
     if(isset($_SESSION['email'])){
         if(isset($_POST['old_pass'])){
@@ -17,7 +19,7 @@
                 update `users` set `password`='$new_pass' where `email`='$email' and `password` = '$old_pass'
                 ");
                 $updatePass->execute();
-                echo "<script>alert('Password changed successful'); window.location.href='/DBMSform/login.php';</script>";
+                echo "<script>alert('Password changed successful'); window.location.href='/login.php';</script>";
             }
             else{
                 echo "Wrong details";
@@ -26,8 +28,10 @@
         }
     }
     else{
-        header("Location: /DBMSform/enterotp.php");
+        header("Location: /enterotp.php");
     }
+
+    ob_end_flush();
 ?>
 
 <html>

@@ -1,4 +1,5 @@
 <?php
+    ob_start();
     session_start();
     if(isset($_SESSION['reset'])){
         if(isset($_POST['new_pass'])){
@@ -15,7 +16,7 @@
                 $setPass->execute();
                 if($setPass){
                     session_unset();
-                    echo "<script>alert('Password reset successful'); window.location.href='/DBMSform/login.php';</script>";
+                    echo "<script>alert('Password reset successful'); window.location.href='/login.php';</script>";
                 }
             }
             else{
@@ -25,8 +26,10 @@
         }
     }
     else{
-        header("Location: /DBMSform/enterotp.php");
+        header("Location: /enterotp.php");
     }
+
+    ob_end_flush();
 ?>
 
 <html>

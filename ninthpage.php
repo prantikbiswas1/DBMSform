@@ -1,8 +1,10 @@
 <?php
+
+  ob_start();
   include('./dbconn.php');
   session_start();
   if($_SESSION['login']==0){
-      header("Location: /DBMSform/login.php");
+      header("Location: /login.php");
     }
   else{
   echo "<script type='text/javascript'>
@@ -11,8 +13,10 @@
   }
 
   if(isset($_POST['submit'])){
-    header("Location: /DBMSform/tenthpage.php");
+    header("Location: /tenthpage.php");
   }
+
+  ob_end_flush();
 
 
 ?>

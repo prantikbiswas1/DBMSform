@@ -1,10 +1,12 @@
 <?php
 
+    ob_start();
+
     session_start();
     if(isset($_SESSION['login'])){
         if($_SESSION['login']==1){
-            header("Location: /DBMSform/firstpage.php");
-            location.replace("Location: /DBMSform/firstpage.php");
+            header("Location: /firstpage.php");
+            location.replace("Location: /firstpage.php");
             die();
         }
     }
@@ -25,7 +27,7 @@
         $entry = $oldUser->fetchAll();
 
         // if($entry[0]['login']==1){
-        //     header("Location: /DBMSform/firstpage.php");
+        //     header("Location: /firstpage.php");
         // }
         
         if($entry){
@@ -40,12 +42,14 @@
             // update `users` set `login`=1 where `email`='$email' and `password`='$password'
             // ");
             // $login->execute();
-            header("Location: /DBMSform/firstpage.php");
+            header("Location: /firstpage.php");
         }
         else{
-            echo "<script>alert('User not present')</script>";
+            echo "<script>alert('users not present')</script>";
         }
     }
+
+    ob_end_flush();
 
 ?>
 

@@ -1,9 +1,10 @@
 <?php
+    ob_start();
     session_start();
     if(isset($_SESSION['otp'])){
         if(isset($_POST['otp'])){
             if($_POST['otp']==$_SESSION['otp']){
-                header("Location: /DBMSform/newpassword.php");
+                header("Location: /newpassword.php");
             }
             else{
                 echo "Otp not matched";
@@ -11,8 +12,10 @@
         }
     }
     else{
-        header("Location: /DBMSform/resetpassword.php");
+        header("Location: /resetpassword.php");
     }
+
+    ob_end_flush();
 ?>
 
 <html>

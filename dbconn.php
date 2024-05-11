@@ -4,12 +4,15 @@
     // $dbpassword = '12345';
     // $database = 'formdata';
 
-    $host = 'localhost:8080';
+    $host = '192.168.0.103';
     $username = 'root';
     $dbpassword = 'example';
     $database = 'formdata';
-    
 
-    $conn = new PDO("mysql:host=$host;dbname=$database",$username,$dbpassword);
+
+    $port = '4306'; // Replace '3306' with your MySQL port
+
+
+    $conn = new PDO("mysql:host=$host;port=$port;dbname=$database", $username, $dbpassword);
     $conn->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION);
 ?>

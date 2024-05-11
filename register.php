@@ -1,5 +1,20 @@
 <?php
+    ob_start();
     session_start();
+
+    include('./dbconn.php');
+
+    $create_table = $conn->prepare("
+    CREATE TABLE IF NOT EXISTS `users` (
+    `email` VARCHAR(100) PRIMARY KEY,
+    `firstname` VARCHAR(50) NOT NULL,
+    `lastname` VARCHAR(50) NOT NULL,
+    `caste` VARCHAR(50),
+    `password` VARCHAR(255) NOT NULL
+    );
+    ");
+   
+    $create_table->execute();
     
     if(isset($_POST['firstname'])){
         $firstname = $_POST['firstname'];
@@ -20,8 +35,8 @@
                 ");
                 $checkEmail->execute();
                 if($checkEmail->rowCount() > 0){
-                    header("Location: /DBMSform/register.php");
-                    echo "User already present";
+                    header("Location: /register.php");
+                    echo "users already present";
                     die();
                 }
 
@@ -49,6 +64,8 @@
         }
 
     }
+
+    ob_end_flush();
 ?>
 
 

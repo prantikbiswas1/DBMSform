@@ -1,14 +1,24 @@
 <?php
+
+    ob_start();
     include('./dbconn.php');
     session_start();
     if($_SESSION['login']==0){
-        header("Location: /DBMSform/login.php");
+        header("Location: /login.php");
       }
     else{
     echo "<script type='text/javascript'>
             window.history.forward();
         </script>";
     }
+
+    $create_table_page2 = $conn->prepare("
+CREATE TABLE IF NOT EXISTS `page8` (
+    `email` VARCHAR(100) PRIMARY KEY,
+    `jsondata` TEXT NOT NULL
+);
+");
+$create_table_page2->execute();
 
     
     if (isset($_POST["submit"])) { 
@@ -35,9 +45,11 @@
         
         if ($insertjson) {
             echo "Inserted successfully";
-            header("Location: /DBMSform/ninthpage.php");
+            header("Location: /ninthpage.php");
         }  
     }
+
+    ob_end_flush();
         
 
 ?>
