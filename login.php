@@ -171,7 +171,7 @@
                         </form>
                         <br />
                         <p style="text-align: center; color: green; font-size: 1.3em;"><strong>NOT REGISTERED? </strong>
-                            <a href='./register.php' class="btn-sm btn-primary">
+                            <a href='./index.php' class="btn-sm btn-primary">
                                 SIGN UP</a>
 
                         </p>

@@ -35,7 +35,7 @@
                 ");
                 $checkEmail->execute();
                 if($checkEmail->rowCount() > 0){
-                    header("Location: /register.php");
+                    header("Location: /index.php");
                     echo "users already present";
                     die();
                 }
@@ -71,7 +71,7 @@
 
 
 <html><head>
-	<title>Faculty Register | IIT Patna</title>
+	<title>Faculty index | IIT Patna</title>
 	<link rel="stylesheet" type="text/css" href="https://ofa.iiti.ac.in/facrec_che_2023_july_02/images/favicon.ico">
 	<link rel="icon" href="https://ofa.iiti.ac.in/facrec_che_2023_july_02/images/favicon.ico" type="image/x-icon">
 	<link rel="stylesheet" type="text/css" href="https://ofa.iiti.ac.in/facrec_che_2023_july_02/css/bootstrap.css">
@@ -218,7 +218,7 @@
                   <br>
                   <br>
                   </h5>
-                <button class="btn btn-sm btn-primary" type="submit" name="submit" value="Submit">Register</button>
+                <button class="btn btn-sm btn-primary" type="submit" name="submit" value="Submit">index</button>
 
                 <strong class=" pull-right" style="color: green;">If registered <a href="./login.php" class="btn btn-sm btn-success"> Login Here</a></strong>
            </div>
